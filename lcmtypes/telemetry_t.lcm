@@ -1,0 +1,10 @@
+struct telemetry_t
+{
+    int64_t utime;
+
+    float pos[3];       // Fill with 0s if you dont have this info
+    float pos_rate[3];  // Fill with 0s if you dont have this info
+
+    imu_data_t imu_data;
+    rpms_t rpms;
+}

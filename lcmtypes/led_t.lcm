@@ -1,0 +1,9 @@
+struct led_t
+{
+    int64_t utime;
+
+    int8_t  n;
+    int8_t  r[n];
+    int8_t  g[n];
+    int8_t  b[n];
+}

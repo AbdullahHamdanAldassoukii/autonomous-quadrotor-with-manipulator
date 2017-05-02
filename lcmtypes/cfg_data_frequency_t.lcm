@@ -1,0 +1,7 @@
+struct cfg_data_frequency_t
+{
+    int16_t hz;
+
+    const int16_t CFG_DATA_FREQUENCY_OFF =  0;
+    const int16_t CFG_DATA_FREQUENCY_MAX = -1;
+}

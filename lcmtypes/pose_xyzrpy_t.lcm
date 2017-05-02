@@ -1,0 +1,11 @@
+struct pose_xyzrpy_t
+{
+    int64_t utime;
+    
+    float x;
+    float y;
+    float z;
+    float roll;
+    float pitch;
+    float yaw;
+}

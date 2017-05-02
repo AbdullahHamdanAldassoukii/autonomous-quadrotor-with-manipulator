@@ -1,0 +1,7 @@
+struct channels_t
+{
+    int64_t utime;
+
+    int8_t  num_channels;
+    int16_t channels[num_channels];
+}

@@ -1,0 +1,7 @@
+struct rpms_t
+{
+    int64_t utime;
+
+    int8_t  num_rpms;
+    int16_t rpms[num_rpms];
+}

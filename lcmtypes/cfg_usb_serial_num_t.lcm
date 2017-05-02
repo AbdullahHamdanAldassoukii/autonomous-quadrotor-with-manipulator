@@ -1,0 +1,4 @@
+struct cfg_usb_serial_num_t
+{
+    int8_t sn_chars[8];
+}

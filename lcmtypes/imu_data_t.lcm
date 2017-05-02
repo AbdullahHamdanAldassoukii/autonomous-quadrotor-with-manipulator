@@ -1,0 +1,13 @@
+struct imu_data_t
+{
+    int64_t utime;
+
+    float quat[4];    // quaternion as formed by LinAlg
+
+    float omega[3];   // body fixed angular rates
+
+    float accel[3];   // body fixed xyz accels where xyz follows right handed
+                      // coordinate system with x pointing out the front of the
+                      // vehicle, y pointing out the left of the vehicle,
+                      // and z pointing out the top
+}

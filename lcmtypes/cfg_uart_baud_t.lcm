@@ -1,0 +1,10 @@
+struct cfg_uart_baud_t {
+	
+	int32_t baud;
+
+	int8_t flags;
+
+	const int8_t FLAGS_UART_ALL  = 0;
+	const int8_t FLAGS_UART_UP   = 1;
+	const int8_t FLAGS_UART_DOWN = 2;
+}

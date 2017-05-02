@@ -1,0 +1,14 @@
+# To make udev print identifiers for a given device (example: /dev/input/event7)
+#      udevadm info -q all --attribute-walk -n /dev/ttyUSB0 | grep serial
+# Then run
+#       sudo udevadm control --reload-rules
+
+# fix latency timer for FTDI serial/usb converters
+DRIVERS=="ftdi_sio", RUN+="/etc/udev/scripts/set_ftdi_low_latency.sh"
+
+# Xbee Sparkfun Breakout
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0666", SYMLINK+="XBee"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", SYMLINK+="XBee", MODE="0666", GROUP="dialout"
+
+# Timing Block
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1cbe", ATTRS{idProduct}=="0002", MODE="0666", SYMLINK+="stack"

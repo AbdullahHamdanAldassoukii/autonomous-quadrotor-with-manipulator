@@ -1,0 +1,9 @@
+struct mpu9250_imu_t {     
+    int64_t timestamp;
+    float  accel[3];
+    float  gyro[3];
+    float  mag[3];
+    float temp;
+    float  TB_angles[3];
+    float  quat[4];
+    }

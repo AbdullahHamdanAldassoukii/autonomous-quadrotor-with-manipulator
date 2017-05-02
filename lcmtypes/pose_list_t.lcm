@@ -1,0 +1,8 @@
+struct pose_list_t
+{
+    int64_t utime;                      // Time of pose creation
+    pose_xyzrpy_t Q_pose;               //Quadrotor Pose
+    pose_xyzrpy_t PU_pose;              // Pickup Pose
+    pose_xyzrpy_t DO_pose;              // Dropoff Pose
+
+}

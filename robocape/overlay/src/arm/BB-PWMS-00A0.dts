@@ -1,0 +1,145 @@
+/dts-v1/;
+/plugin/;
+
+
+/ {
+     compatible = "ti,beaglebone", "ti,beaglebone-black", "ti,beaglebone-green";
+
+    /* identification */
+    part-number = "BB-PWMS";
+    version = "00A0";
+
+
+    /* state the resources this cape uses */
+    exclusive-use =
+        /* the pin header uses */
+        "P8.13",    /* EHRPWM2B - ZONE 6 PWM */
+        "P8.19",    /* EHRPWM2A - ZONE 4 PWM */
+        "P9.14",    /* EHRPWM1A - ZONE 3 PWM */
+        "P9.16",    /* EHRPWM1B - ZONE 5 PWM */
+        "P9.42",    /* pwm: eCAP0_in_PWM0_out */
+
+        /* the hardware ip uses */
+        "ehrpwm1A",
+        "ehrpwm1B",
+        "ehrpwm2A",
+        "ehrpwm2B",
+        "ecap0";
+
+
+        fragment@0 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+
+            /* P8_13 (ZCZ ball T10) */
+            P8_13_pwm_pin: pinmux_P8_13_pwm_pin {
+                pinctrl-single,pins = <0x024  0x24>; };     /* Mode 4, Pull-Down, RxActive */
+
+            /* P8_19 (ZCZ ball U10) */
+            P8_19_pwm_pin: pinmux_P8_19_pwm_pin {
+                pinctrl-single,pins = <0x020  0x24>; };     /* Mode 4, Pull-Down, RxActive */
+
+            /* P9_14 (ZCZ ball U14) */
+            P9_14_pwm_pin: pinmux_P9_14_pwm_pin {
+                pinctrl-single,pins = <0x048  0x26>; };     /* Mode 6, Pull-Down, RxActive */
+
+            /* P9_16 (ZCZ ball T14) */
+            P9_16_pwm_pin: pinmux_P9_16_pwm_pin {
+                pinctrl-single,pins = <0x04c  0x26>; };     /* Mode 6, Pull-Down, RxActive */
+            
+            /* P9_42 (ZCZ ball C18) */
+            P9_42_pwm_pin: pinmux_P9_42_pwm_pin {
+                pinctrl-single,pins = <0x164  0x20>; };     /* Mode 6, Pull-Down, RxActive */
+
+        };
+    };
+
+    fragment@1 {
+        target = <&ocp>;
+        __overlay__ {
+
+            P8_13_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&P8_13_pwm_pin>;
+            };
+
+            P8_19_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&P8_19_pwm_pin>;
+            };
+
+            P9_14_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&P9_14_pwm_pin>;
+            };
+
+            P9_16_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&P9_16_pwm_pin>;
+            };
+
+            P9_42_pinmux {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&P9_42_pwm_pin>;
+            };
+        };
+    };
+
+    fragment@20 {
+        target = <&epwmss0>;
+        __overlay__ {
+            status = "okay";
+        };
+    };  
+
+    fragment@22 {
+        target = <&ecap0>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
+
+    fragment@23 {
+        target = <&epwmss1>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+    fragment@24 {
+        target = <&ehrpwm1>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
+
+    fragment@25 {
+        target = <&epwmss2>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+    fragment@26 {
+        target = <&ehrpwm2>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <>;
+        };
+    };
+};
