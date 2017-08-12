@@ -3,9 +3,8 @@
 Autonomous Quadcopter with Delta Arm:
 
 <p align="center">
-  <img src="./misc/cover.JPG"/>
+  <img src="./misc/cover.JPG" width="550"/>
 </p>
-
 
 Quadcopters are an increasingly popular technology, emerging in applications that include package delivery services and traversing human-inaccessible environments. Met with both excitement and controversy, autonomous control of quadcopters is a topic essential to the technology's success in the future. In this project, we implement an autonomous control system for a quadrotor with the ultimate goal to transit to a particular location, pick up a small block, and return it to a destination point and drop the block. To achieve this, the project involves implementation of PID controllers, state machines, signal processing of Optitrack data, mechanical design and 3D-printing skills, as well as delta arm kinematics. 
 
@@ -43,7 +42,7 @@ Our robot system includes several electrical modules that interface with one ano
 Gripper fantasy:
 
 <p align="center">
-  <img src="./misc/assembly.png"/>
+  <img src="./misc/assembly.png" width="550"/>
 </p>
 
 The two-finger, rotation-based gripper utilizes a single XL-320 Dynamixel motor. The fingers measure approximately 11.8 cm in width, enough to adequately hold two blocks at once. This compensates for turbulence experienced by the quadcopter during the pick-up phase, increasing the likelihood of grasping a block.
@@ -137,7 +136,7 @@ The quadrotor is also programmed to traverse to one waypoint, hover briefly, the
 Quadrotor pick and drop task:
 
 <p align="center">
-  <img src="./misc/pick_drop_real.PNG" width="550"/>
+  <img src="./misc/pick_drop_real.PNG" width="400"/>
 </p>
 
 
@@ -185,7 +184,7 @@ Multi-rounds of trajectory for pick and drop task:
 State machine for pick and drop task when chasing mobile station:
 
 <p align="center">
-  <img src="./misc/pick_drop_chasing_state_machine.png" width="550"/>
+  <img src="./misc/pick_drop_chasing_state_machine.png"/>
 </p>
 
 In this task, the goal is again to pick-and-place a block, but the drop-off station is now mobile and commanded remotely by a ground station operator. To account for the moving receptacle, we implement both location and velocity checks of the quadcopter. The location check verifies that the location error of the quadrotor and the current waypoint (the pick-up or drop-off station) are within a certain range. Furthermore, the velocity check ensures that the quadrotor matches the velocity of the drop-off station. 
@@ -203,6 +202,6 @@ The **Chase a Mobile Drop-off Station** state machine differs from **Static pick
 
 This project is based on ROB550 project in University of Michigan.
 
-Code contributors: Zihang Wei (wzih@umich.edu), Prashin Santosh Sharma (prashinr@umich.edu), Eric Tsai (ericct@umich.edu), The Great Jerry (our gripper name)
+Code contributors: Zihang Wei (wzih@umich.edu), Prashin Santosh Sharma (prashinr@umich.edu), Eric Tsai (ericct@umich.edu), The Great Jerry (our gripper name).
 
 We would like to thank Prof. Ella Atkins, course instructor, for scientific guidance, Dr. Peter gaskell, lab instructor, for providing us with the proper equipment set and guidance throughout the experimentation process as well as lab sessions.
