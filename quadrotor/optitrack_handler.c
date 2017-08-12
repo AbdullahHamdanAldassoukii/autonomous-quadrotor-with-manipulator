@@ -29,9 +29,6 @@ void optitrack_handler(const lcm_recv_buf_t *rbuf, const char *channel,
     state.Q_xpos = msg->Q_pose.x;
     state.Q_ypos = msg->Q_pose.y;
     state.Q_zpos = msg->Q_pose.z;
-/*    state.Q_xpos = test1;
-    state.Q_ypos = test2;
-    state.Q_zpos = test3;*/
 
 /*    state.Q_xpos = march_filter(&filter_x, msg->Q_pose.x);
     state.Q_ypos = march_filter(&filter_y, msg->Q_pose.y);

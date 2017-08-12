@@ -4,17 +4,10 @@
 *   Template for ROB550 FlightLab W2017
 *
 *	pgaskell@umich.edu
+*	wzih@umich.edu
 *******************************************************************************/
 #define EXTERN
 #include "quadrotor_main.h"
-
-
-// // Robot geometry (assumes identical links) 
-// // --> watch these globals - may want to add identifiers (e.g., "delta_f", "delta_e"...)
-// const double f = 2.0;     // base reference triangle side length
-// const double e = 1.0;     // end effector reference triangle side length
-// const double rf = 1.0;    // Top link length
-// const double re = 2.0;    // Bottom link length
 
 const double f = 240;     // base reference triangle side length
 const double e = 61;     // end effector reference triangle side length
@@ -58,9 +51,6 @@ int main(int argc, char *argv[]){
           task1_final_y=-1.5;
           task1_final_z=-1;
 
-/*          state.Q_target_x = 1;
-          state.Q_target_y = 1;
-          state.Q_target_z = -1.5;*/
           printf("----------------------------------------\n");
           printf("Go-to-a-point-and-back mode.\n");
           printf("----------------------------------------\n");
@@ -83,11 +73,6 @@ int main(int argc, char *argv[]){
           printf("Chase pick-drop mode.\n");
           printf("----------------------------------------\n");
     } 
-
-
-
-
-
 
     
     if(atof(argv[1]) == 7){
@@ -173,9 +158,6 @@ int main(int argc, char *argv[]){
 *******************************************************************************/
 void initialize_parameters(){
 
-
-
-
 gripper_loc_init();
 time_step_flag = 0;
 time_step_flag_tor = 0;
@@ -253,14 +235,6 @@ gripper_fb_pos = 0;
     yawPID.integral_limit_max = 0.01;
     yawPID.integral_limit_min = -0.01;
 
-    //velocity PID, used in velocity loop
-/*    velPID.time_stamp = 0;
-    velPID.kp = 40;
-    velPID.ki = 0;
-    velPID.kd = 1 * (0.01);
-    velPID.prev_err = 0;
-    velPID.integral_err = 0;*/
-
     //used in potentiameter - ADC - beaglebone tuning process
     adc_PID.p = 0;
     adc_PID.i = 0;
@@ -285,14 +259,7 @@ gripper_fb_pos = 0;
 
     command_list.len = 4;
     command_list.commands = calloc(command_list.len, sizeof(dynamixel_command_t));
-
-
-
-
-
 }
-
-
 
 
 void check_torque(){
@@ -321,18 +288,11 @@ float theta_regulate(float theta){
     return theta;
 }
 
-
-
-
 void dynamixel_handler(const lcm_recv_buf_t *rbuf, const char *channel,
               const dynamixel_status_list_t *msg, void *userdata) {
-
 									//inverse kinematics
 								//	loc_ADC_tune();
 									delta_arm_grab();
-
-
-
 
     dynamixel_status_t* status = msg -> statuses;
     int32_t num_servos = msg -> len;
@@ -346,7 +306,6 @@ void dynamixel_handler(const lcm_recv_buf_t *rbuf, const char *channel,
         }
         servo_positions[i] = status->position_radians;
         status += 1;
-
     }
 
     // test delta arm forward kinematics
@@ -363,8 +322,6 @@ void dynamixel_handler(const lcm_recv_buf_t *rbuf, const char *channel,
       printf("\nee\n");
     }*/
         //check_torque();
-
-
 
 }
 /*******************************************************************************
@@ -466,10 +423,8 @@ void delta_arm_trim(){
   }
 }
 
-void delta_arm_grab(){// block_location - bot_location
+void delta_arm_grab(){
     delta_calcInverse(-gripper_y_mm, -gripper_x_mm, -gripper_z_mm, &theta_gripper[1], &theta_gripper[2], &theta_gripper[0]);
-
-  //delta_calcInverse(-gripper_y_mm, -gripper_x_mm, -gripper_z_mm, &theta_gripper[1], &theta_gripper[2], &theta_gripper[0]);
 }
 
 /*******************************************************************************
@@ -483,19 +438,6 @@ int interrupt_func(){
     return 1;
 }
 
-
-/*int test_value(){
-  uint64_t time_now1 = micros_since_epoch();
-  float x_vel_ref = -dist_vel_map(&dist_acc_config, &vel_ref_config, 0.05);
-  int x_spd = 1500 + PID_func(&xPID, -0.4);//roll
-  state.x1 = x_vel_ref;//PWM_regulator(z_spd,0);//thrust
-  state.x2 = x_spd;//roll
-  state.x3 = PWM_regulator(x_spd,1);//pitch
-  state.x4 = time_now1;//yaw
-
-  state.RC_cmds[7] = 1500;   
-  return 1;
-}*/
 
 /*******************************************************************************
 * read_imu() IMU interrupt routine to state variables
@@ -600,16 +542,9 @@ void* printf_loop(void* ptr){
             printf("PTCH|");
             printf("YAW |");
             printf("AUTO|");
-                       printf("count|");
-            /*printf("%s",new_state);
-            printf("%d",state.autonomous_mode */
+            printf("count|");
+
             printf("\n");
-
-            // if (gripper_position[0] == NULL) {
-                // printf("  Gripper positions: %0.3f, %0.3f, %0.3f |", gripper_position[0], gripper_position[1], gripper_position[2]);
-            // }
-
-
         }
         else if(new_state==PAUSED && last_state!=PAUSED){
             printf("\nPAUSED\n");
@@ -678,13 +613,6 @@ int delta_calcForward(double theta1, double theta2, double theta3, double *x0, d
 {
 
   double t = (f-e)*tan30/2;
-  //ERIC: No need to convert to radians
-  //double dtr = pi/(double)180.0;
- 
-
-  /*theta1 *= dtr;
-  theta2 *= dtr;
-  theta3 *= dtr;*/
  
   double y1 = -(t + rf*cos(theta1));
   double z1 = -rf*sin(theta1);
@@ -733,7 +661,6 @@ int delta_calcForward(double theta1, double theta2, double theta3, double *x0, d
 int delta_calcAngleYZ(double x0, double y0, double z0, double *theta) {
   double y1 = -0.5 * 0.57735 * f; // f/2 * tg 30
   y0 -= 0.5 * 0.57735    * e;    // shift center to edge
-  // z = a + b*y
   double a = (x0*x0 + y0*y0 + z0*z0 +rf*rf - re*re - y1*y1)/(2*z0);
   double b = (y1-y0)/z0;
   // discriminant
@@ -745,10 +672,8 @@ int delta_calcAngleYZ(double x0, double y0, double z0, double *theta) {
   double yj = (y1 - a*b - sqrt(d))/(b*b + 1); // choosing outer point
   double zj = a + b*yj;
 
-  //ERIC: HAVE THETA BE RETURNED IN RADIANS
   *theta = 180.0*atan(-zj/(y1 - yj))/pi + ((yj>y1)?180.0:0.0);
   *theta = (*theta)*pi/(double)180.0; 
-  // *theta = 180.0*atan(-zj/(y1 - yj))/pi + ((yj>y1)?180.0:0.0);
   return 0;
 }
  

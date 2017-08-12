@@ -124,10 +124,6 @@ void auto_control(float *pose, float *set_points, int16_t* channels_ptr)
 
   //channels_ptr[7] = 1500;   
 
-/*  test4 = 1000*(set_points[0]-pose[0]);
-  test5 = 1000*(set_points[1]-pose[1]);
-  test6 = 1000*(set_points[2]-pose[2])-Z_BIAS_MM;*/
-
 //loc_ADC_tune();
 
   if(task_num == 1){
@@ -144,10 +140,6 @@ void auto_control(float *pose, float *set_points, int16_t* channels_ptr)
     if(task_num == 4){
     chase_pick_drop(pose, set_points);
   }
-
-
-
-
 
   if(task_num == 7){
     gripper_hand_carry(pose, set_points);
@@ -175,11 +167,10 @@ int round_trip(float *pose, float *set_points){
 
         if(check_waypoint(pose, set_points, 0)){
           if(clock_tm2(4)){
-
-                    printf("----------------------------------------\n");
-        printf("step:%d.\n",step_num);
-        printf("----------------------------------------\n");
-                    step_num++;
+			printf("----------------------------------------\n");
+			printf("step:%d.\n",step_num);
+			printf("----------------------------------------\n");
+			step_num++;
           }
           
         }
@@ -224,10 +215,6 @@ int round_trip(float *pose, float *set_points){
 
 int pick_drop_one_time(float *pose, float *set_points){
 	if(step_finished == 0){
-
-
-     // if()
-
       // above pick up block
   		if (step_num == 1){
 
@@ -312,7 +299,6 @@ int pick_drop_one_time(float *pose, float *set_points){
       //drop off block
       if (step_num == 7){
 //drop gripper
-
         if(drop_block(pose,set_points)){
           printf("----------------------------------------\n");
           printf("step:%d finished.\n",step_num);
@@ -362,9 +348,6 @@ int pick_drop_one_time(float *pose, float *set_points){
 
 int task2(float *pose, float *set_points){
 	if(step_finished == 0){
-
-
-     // if()
       // arrive pick up block
   		if (step_num == 1){
 
@@ -378,16 +361,14 @@ int task2(float *pose, float *set_points){
           printf("----------------------------------------\n");
   				step_num++;
   			}*/
-  			        if(check_waypoint(pose, set_points, 0)){
-          if(clock_tm2(6)){
-
-                    printf("----------------------------------------\n");
-        printf("step:%d.\n",step_num);
-        printf("----------------------------------------\n");
-                    step_num++;
-          }
-          
-        }
+  			if(check_waypoint(pose, set_points, 0)){
+				  if(clock_tm2(6)){
+						printf("----------------------------------------\n");
+						printf("step:%d.\n",step_num);
+						printf("----------------------------------------\n");
+						step_num++;
+				  }
+        	}
   		}
 
       //above pick up block
@@ -404,17 +385,15 @@ int task2(float *pose, float *set_points){
   				step_num++;
   				step_finished = 1;
   			}*/
-  			        if(check_waypoint(pose, set_points, 0)){
-          if(clock_tm2(4)){
-
-                    printf("----------------------------------------\n");
-        printf("step:%d.\n",step_num);
-        printf("----------------------------------------\n");
-                    step_num++;
-                    step_finished = 1;
-          }
-          
-        }
+			if(check_waypoint(pose, set_points, 0)){
+				if(clock_tm2(4)){
+					printf("----------------------------------------\n");
+					printf("step:%d.\n",step_num);
+					printf("----------------------------------------\n");
+					step_num++;
+					step_finished = 1;
+				}
+        	}
   		}
    
 

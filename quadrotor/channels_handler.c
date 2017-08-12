@@ -3,8 +3,6 @@
 #define EXTERN extern
 #include "quadrotor_main.h"
 
-////////////////////////////////////////////////////////////////////////
-
 void channels_handler(const lcm_recv_buf_t *rbuf, const char *channel,
               const channels_t *msg, void *userdata)
 {
@@ -110,17 +108,4 @@ void channels_handler(const lcm_recv_buf_t *rbuf, const char *channel,
 
   // send lcm message to motors
   channels_t_publish((lcm_t *) userdata, BLOCKS_TX_CHANNEL, &new_msg);
-
-    // Save received (msg) and modified (new_msg) command data to file.
-  // NOTE:  Customize as needed (set_points[] is for geofencing)
-/*  fprintf(block_txt,"%ld,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%f,%f,%f,%f,%f,%f,%f,%f\n",
-   // (long int) msg->utime,msg->channels[0],msg->channels[1],msg->channels[2],
-    (long int) utime_now(),msg->channels[0],msg->channels[1],msg->channels[2],
-    msg->channels[3], msg->channels[7],
-    new_msg.channels[0],new_msg.channels[1],new_msg.channels[2], 
-    new_msg.channels[3],new_msg.channels[7],
-    set_points[0],set_points[1],set_points[2],
-    set_points[3],set_points[4],set_points[5],set_points[6],
-    set_points[7]);
-  fflush(block_txt);*/
 }
