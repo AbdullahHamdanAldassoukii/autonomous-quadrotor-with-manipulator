@@ -6,7 +6,11 @@ Autonomous Quadcopter with Delta Arm:
   <img src="./misc/cover.JPG" width="550"/>
 </p>
 
-Quadcopters are an increasingly popular technology, emerging in applications that include package delivery services and traversing human-inaccessible environments. Met with both excitement and controversy, autonomous control of quadcopters is a topic essential to the technology's success in the future. In this project, we implement an autonomous control system for a quadrotor with the ultimate goal to transit to a particular location, pick up a small block, and return it to a destination point and drop the block. To achieve this, the project involves implementation of PID controllers, state machines, signal processing of Optitrack data, mechanical design and 3D-printing skills, as well as delta arm kinematics. 
+In this project, we implement an autonomous control system for a quadrotor with the ultimate goal to transit to a particular location, pick up a small block, and return it to a destination point and drop the block. To achieve this, the project involves implementation of PID controllers, state machines, signal processing of Optitrack data, mechanical design and 3D-printing skills, as well as delta arm kinematics. 
+
+## Code Structure
+
+****
 
 
 ## Hardware Architecture
@@ -34,8 +38,6 @@ Our robot system includes several electrical modules that interface with one ano
 * **ESC module**: The electronic speed control module is an electronic circuit used to vary an electric motor's speed and direction. The ESC is used to control propeller motors.
 
 * **Blocks**: The blocks system allows intercepting and retransmitting signals sent from the radio receiver to the flight controller.  This allows us to implement an outer-loop controller with the BeagleBone acting as a full or partial autopilot.
-
-* **Potentiometers**: A three-potentiometer module was assembled to simulate the trajectories of both the quadrotor and the delta arm. This system provided an alternative testbed for our state machine and arm kinematics without relying on Optitrack. The voltage inputs from the potentiometers, read by the BeagleBone ADC module, represented the xyz-coordinates of the quadrotor with respect to the world frame. Similarly, the microcontroller could be programmed to interpret the inputs as coordinates of the delta arm. The potentiometer system streamlined the testing process, allowing us to tune our programs' parameters without the high-demand Optitrack room. Details of this simulation tool are discussed in a later section.
 
 ## Gripper Design
 
@@ -200,8 +202,12 @@ The **Chase a Mobile Drop-off Station** state machine differs from **Static pick
 
 ## Acknowledgment
 
-This project is based on ROB550 project in University of Michigan.
+This project is based on ROB550 in University of Michigan.
 
 Code contributors: Zihang Wei (wzih@umich.edu), Prashin Santosh Sharma (prashinr@umich.edu), Eric Tsai (ericct@umich.edu), The Great Jerry (our gripper name).
 
 We would like to thank Prof. Ella Atkins, course instructor, for scientific guidance, Dr. Peter gaskell, lab instructor, for providing us with the proper equipment set and guidance throughout the experimentation process as well as lab sessions.
+
+## License
+
+autonomous-quadrotor-with-manipulator is distributed under the [MIT license](./LICENSE).
