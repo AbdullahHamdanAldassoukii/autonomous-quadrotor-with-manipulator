@@ -8,10 +8,13 @@ Autonomous Quadcopter with Delta Arm:
 
 In this project, we implement an autonomous control system for a quadrotor with the ultimate goal to transit to a particular location, pick up a small block, and return it to a destination point and drop the block. To achieve this, the project involves implementation of PID controllers, state machines, signal processing of Optitrack data, mechanical design and 3D-printing skills, as well as delta arm kinematics. 
 
-## Code Structure
+## Demo Videos
 
-****
+[Autonomous quadrotor pick up and drop off blocks (four times)](https://youtu.be/fQ8ezzh_FvI)
 
+[Autonomous quadrotor pick up and chase a moving bot to drop off blocks](https://youtu.be/041XWoLxGrw)
+
+[Jerry the gripper test](https://youtu.be/ZsNcr3xBces)
 
 ## Hardware Architecture
 
